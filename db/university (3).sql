@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `courses` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `department` text NOT NULL,
+  `department` text NOT NULL, -- напевне department_id, але виглядає так, що цього поля тут не треба
   `semester` int(11) NOT NULL,
   `final_controlе` text NOT NULL,
-  `teachers` text NOT NULL,
+  `teachers` text NOT NULL, -- це лишнє, бо є таблиця звязків relations
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `courses` (
 CREATE TABLE IF NOT EXISTS `departments` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `adress` text NOT NULL,
+  `adress` text NOT NULL, --address
   `year_of_foundation` date NOT NULL,
-  `name_of_monitor` text NOT NULL,
+  `name_of_monitor` text NOT NULL, --дивна назва, якщо це декан, то має бути id з таблиці teachers
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `group` (
   `name` text NOT NULL,
   `count_of_students` int(11) NOT NULL,
   `starosta` text NOT NULL,
-  `courses` text NOT NULL,
+  `courses` text NOT NULL, --зайве
   `semester_number` int(11) NOT NULL,
-  `teacher` text NOT NULL,
+  `teacher` text NOT NULL,--зайве, а от department_id - знадобився б
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -96,8 +96,8 @@ CREATE TABLE IF NOT EXISTS `teachers` (
   `firstname` text NOT NULL,
   `name` text NOT NULL,
   `date_of_birth` date NOT NULL,
-  `post` text NOT NULL,
-  `degree` text NOT NULL,
+  `post` text NOT NULL, -- post_id і табличка із посадами
+  `degree` text NOT NULL, -- аналогічно
   `research_topic` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `department_id` (`department_id`)
